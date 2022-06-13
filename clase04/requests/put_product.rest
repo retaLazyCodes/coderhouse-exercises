@@ -1,0 +1,9 @@
+PUT  http://localhost:8080/api/productos/1
+Content-Type: application/json
+
+{
+    "title": "Milanesa",
+    "price": 500,
+    "thumbnail": "http://milanga.png"
+}
+
