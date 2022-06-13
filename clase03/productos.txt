@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Leche",
+    "price": 150.7,
+    "thumbnail": "https://www.laserenisimavaatucasa.com.ar/wp-content/uploads/2020/06/7793940448003-1.png"
+  },
+  {
+    "id": 2,
+    "title": "Yerba mate",
+    "price": 700.00,
+    "thumbnail": "https://m.media-amazon.com/images/I/517VkCCikOL._AC_SX522_.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Desodorante",
+    "price": 320,
+    "thumbnail": "https://m.media-amazon.com/images/I/415ZvcpNDdL._SY355_.jpg"
+  }
+]
