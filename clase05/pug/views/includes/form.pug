@@ -1,0 +1,19 @@
+h2 Ingrese producto
+form(action='/api/productos' method='post')
+  .mb-3.row
+    label.form-label(for='title') Producto:
+    .col-sm-12
+      input#title.form-control(type='text' name='title' required='' placeholder='Nombre del producto')
+  .mb-3.row
+    label.form-label(for='price') Precio:
+    .col-sm-12
+      input#price.form-control(type='number' name='price' step='0.01' placeholder='0.00' required='')
+  .mb-3.row
+    label.form-label(for='thumbnail') Foto URL:
+    .col-sm-12
+      input#thumbnail.form-control(type='url' name='thumbnail' required='' placeholder='URL de la imagen')
+  .d-grid.gap-2.col-6.mx-auto
+    input.btn.btn-success.btn-lg(type='submit' value='Enviar')
+br
+
++my-include('from-form')

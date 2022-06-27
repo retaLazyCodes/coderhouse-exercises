@@ -1,0 +1,30 @@
+        body {
+            background: #212529;
+        }
+
+        .my-container {
+            margin: 0 auto;
+            max-width: 48rem;
+            width: 90%;
+            height: 100vh;
+            background-color: #cecaca;
+        }
+
+        .not-found {
+            margin: 30px;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .change-page-btn {
+            display: inline-block;
+            position: absolute;
+            bottom: 10px;
+        }
+
+        h2 {
+            padding: 10px;
+            color: #2840FB;
+            font-weight: bold;
+            font-size: 35px;
+        }

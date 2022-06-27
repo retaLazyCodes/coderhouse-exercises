@@ -1,0 +1,34 @@
+<h2>Vista de productos</h2>
+
+<% if(productos.length){ %>
+    <table class="table table-dark">
+        <thead>
+            <tr class="table-active">
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Foto</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% productos.forEach(function(producto) { %>
+                <tr>
+                    <td>
+                        <%= producto.title %>
+                    </td>
+                    <td>
+                        $ <%= producto.price %>
+                    </td>
+                    <td><img src=<%=producto.thumbnail %> width="60px" height="40px"></td>
+                </tr>
+                <% }) %>
+        </tbody>
+    </table>
+
+    <% } else{ %>
+        <div class=" not-found alert alert-warning" role="alert">
+            No se encontraron productos
+        </div>
+        <% } %>
+
+            <br>
+            <%- include('../partials/changePage', {form:false}); %>

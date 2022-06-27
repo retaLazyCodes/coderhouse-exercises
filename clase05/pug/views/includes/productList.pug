@@ -1,0 +1,22 @@
+h2 Vista de productos
+
+if productos.length
+    table.table.table-dark
+        thead
+            tr.table-active
+            th Producto
+            th Precio
+            th Foto
+        tbody
+            each producto in productos
+                tr
+                    td #{producto.title}
+                    td $ #{producto.price}
+                    td 
+                        img(src=producto.thumbnail width='60px' height='40px')
+
+else
+    .not-found.alert.alert-warning(role='alert') No se encontraron productos
+br
+
++my-include()

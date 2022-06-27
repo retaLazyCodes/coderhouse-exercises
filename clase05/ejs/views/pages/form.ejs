@@ -1,0 +1,29 @@
+<h2>Ingrese producto</h2>
+
+<form action="/api/productos" method="post">
+    <div class="mb-3 row">
+        <label for="title" class="form-label">Producto:</label>
+        <div class="col-sm-12">
+            <input type="text" id="title" name="title" required class="form-control" placeholder="Nombre del producto">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="price" class="form-label">Precio:</label>
+        <div class="col-sm-12">
+            <input type="number" id="price" name="price" step="0.01" placeholder="0.00" required class="form-control">
+        </div>
+    </div>
+    <div class="mb-3 row">
+        <label for="thumbnail" class="form-label">Foto URL:</label>
+        <div class="col-sm-12">
+            <input type="url" id="thumbnail" name="thumbnail" required class="form-control"
+                placeholder="URL de la imagen">
+        </div>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <input type="submit" class="btn btn-success btn-lg" value="Enviar">
+    </div>
+</form>
+
+<br>
+<%- include('../partials/changePage', {form:'form'}); %>
