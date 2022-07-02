@@ -1,0 +1,20 @@
+[
+  {
+    "email": "jones@jones.com",
+    "text": "Soy el JONES",
+    "date": "07/02/2022 15:05:12",
+    "id": 1
+  },
+  {
+    "email": "elparasito@k.jp",
+    "text": "yo soy parasito",
+    "date": "07/02/2022 15:07:17",
+    "id": 2
+  },
+  {
+    "email": "elparasito@k.jp",
+    "text": "yo soy parasito",
+    "date": "07/02/2022 15:07:53",
+    "id": 3
+  }
+]

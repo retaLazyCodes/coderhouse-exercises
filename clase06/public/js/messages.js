@@ -1,25 +1,36 @@
-function render(msjs) {
-    const mensajesHTML = msjs
-        .map(msj => {
-            return `<div>
-                <strong>${msj.author}</strong>:
-                <em>${msj.text}</em></div>`
-        }).join('<br>')
-    document.getElementById('messages').innerHTML = mensajesHTML
-}
+let msjsTemplate = ''
+let messageForm = null
 
-document.getElementById('form').addEventListener('submit', function (e) {
-    e.preventDefault()
-    addMessage()
-})
+/* si recibo mensajes, los muestro usando un template de handlebars compilado */
+socket.on('mensajes', async function (mensajes) {
+    const response = await fetch('/mensajes/template')
+    const data = await response.text()
+    msjsTemplate = Handlebars.compile(data)
+
+    document.getElementById('mensajes').innerHTML = data2HBS(mensajes)
+    if (messageForm == null) {
+        messageForm = document.getElementById('messageForm')
+    }
+});
+
+setTimeout(function () {
+    messageForm.addEventListener('submit', function (e) {
+        e.preventDefault()
+        addMessage()
+    })
+}, 2000);
 
 function addMessage() {
     const newMessage = {
-        author: document.getElementById('username').value,
+        email: document.getElementById('email').value,
         text: document.getElementById('text').value
     }
     console.log(newMessage)
     socket.emit('newMessage', newMessage)
 }
 
-socket.on('mensajes', msjs => render(msjs));
+function data2HBS(mensajes) {
+    console.log(mensajes);
+    let html = msjsTemplate({ mensajes: mensajes });
+    return html;
+}

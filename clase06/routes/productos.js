@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Container = require('../controllers/Container')
+const Container = require('../controllers/ProductContainer')
 const Product = require('../models/Product')
 
 const container = new Container()

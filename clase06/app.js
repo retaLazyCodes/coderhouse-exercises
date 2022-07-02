@@ -28,6 +28,9 @@ app.set('views', __dirname + '/views')
 const { router, container } = require('./routes/productos')
 app.use('/api', router)
 
+const { msgRouter, msgContainer } = require('./routes/messages')
+app.use('/api', msgRouter)
+
 app.get('/productos', async (req, res) => {
     // const apiEndpoint = req.protocol + "://" + req.headers.host + '/api' + req.url
     // console.log(apiEndpoint)
@@ -59,6 +62,8 @@ app.get('/mensajes/template', async (req, res) => {
 });
 
 
+const { getDateTime } = require('./helpers/date')
+
 io.on('connection', socket => {
     console.log('Nuevo cliente conectado!')
 
@@ -66,17 +71,25 @@ io.on('connection', socket => {
     const productos = container.getAll()
     socket.emit('productos', productos)
 
-    /* Escucho los mensajes enviado por el cliente y se los propago a todos */
+    /* Escucho el producto enviado por el cliente y se los propago a todos */
     socket.on('newProduct', data => {
         io.sockets.emit('productos', productos)
     });
 
+
+    const mensajes = msgContainer.getAll()
     /* Envio los mensajes al cliente que se conectó */
     socket.emit('mensajes', mensajes)
 
     /* Escucho los mensajes enviado por el cliente y se los propago a todos */
-    socket.on('newMessage', mensajes => {
-        io.sockets.emit('mensajes', mensajes)
+    socket.on('newMessage', message => {
+        const newMessage = {
+            email: message.email,
+            text: message.text,
+            date: getDateTime()
+        }
+        msgContainer.save(newMessage).then(() =>
+            io.sockets.emit('mensajes', mensajes))
     });
 })
 

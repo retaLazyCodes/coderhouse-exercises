@@ -8,17 +8,12 @@ module.exports = class MessageContainer {
 
     static count = 0
 
-    async save(product) {
+    async save(message) {
         MessageContainer.count++
-        product.id = MessageContainer.count
-        this.#add(product)
+        message.id = MessageContainer.count
+        this.#add(message)
         await this.#writeInDisk()
-        return product.id
-    }
-
-    getById(id) {
-        const messaje = this.messages.find(p => p.id == id)
-        return messaje !== undefined ? messaje : null
+        return message.id
     }
 
     getAll() {
@@ -26,8 +21,8 @@ module.exports = class MessageContainer {
     }
 
     // private methods
-    #add(product) {
-        this.messages.push(product)
+    #add(message) {
+        this.messages.push(message)
     }
 
     async #writeInDisk() {

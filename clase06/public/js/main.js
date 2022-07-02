@@ -14,7 +14,7 @@ socket.on('productos', async function (productos) {
 });
 
 /* obtengo el formulario */
-const form = document.querySelector('productForm');
+const form = document.querySelector('.productForm');
 
 form.addEventListener('submit', event => {
     console.log(listaTemplate)
