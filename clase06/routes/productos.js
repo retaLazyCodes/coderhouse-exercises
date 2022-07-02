@@ -45,4 +45,4 @@ router.delete('/productos/:id', function (req, res) {
     res.end(JSON.stringify(({ error: 'producto no encontrado' })))
 })
 
-module.exports = router;
+module.exports = { router, container };

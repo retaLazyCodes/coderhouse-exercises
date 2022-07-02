@@ -25,14 +25,15 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs')
 app.set('views', __dirname + '/views')
 
-const productsRouter = require('./routes/productos')
-app.use('/api', productsRouter)
+const { router, container } = require('./routes/productos')
+app.use('/api', router)
 
 app.get('/productos', async (req, res) => {
-    const apiEndpoint = req.protocol + "://" + req.headers.host + '/api' + req.url
-    console.log(apiEndpoint)
-    const response = await fetch(apiEndpoint)
-    const productos = await response.json()
+    // const apiEndpoint = req.protocol + "://" + req.headers.host + '/api' + req.url
+    // console.log(apiEndpoint)
+    // const response = await fetch(apiEndpoint)
+    // const productos = await response.json()
+    const productos = container.getAll()
     console.log(productos)
     res.render('productList.hbs', { productos: productos, layout: 'index' })
 });
@@ -44,9 +45,39 @@ app.get('/productos/template', async (req, res) => {
         if (error) {
             throw error;
         }
-        console.log(data.toString())
         res.send(data.toString())
     });
 });
+
+app.get('/mensajes/template', async (req, res) => {
+    fs.readFile(__dirname + '/views/chat.hbs', 'utf8', (error, data) => {
+        if (error) {
+            throw error;
+        }
+        res.send(data.toString())
+    });
+});
+
+
+io.on('connection', socket => {
+    console.log('Nuevo cliente conectado!')
+
+    /* Envio los productos al cliente que se conectó */
+    const productos = container.getAll()
+    socket.emit('productos', productos)
+
+    /* Escucho los mensajes enviado por el cliente y se los propago a todos */
+    socket.on('newProduct', data => {
+        io.sockets.emit('productos', productos)
+    });
+
+    /* Envio los mensajes al cliente que se conectó */
+    socket.emit('mensajes', mensajes)
+
+    /* Escucho los mensajes enviado por el cliente y se los propago a todos */
+    socket.on('newMessage', mensajes => {
+        io.sockets.emit('mensajes', mensajes)
+    });
+})
 
 module.exports = httpServer;

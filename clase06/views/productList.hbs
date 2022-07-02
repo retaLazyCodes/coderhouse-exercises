@@ -1,4 +1,8 @@
 <style>
+    .table {
+        text-align: center;
+    }
+
     .table td,
     .table th {
         vertical-align: middle;
@@ -18,7 +22,7 @@
 </style>
 
 <div class="jumbotron">
-    <h1>Vista de Productos</h1>
+    <h1>Lista de Productos</h1>
     <button class="btn btn-info mt-3" onclick="location.href = '/'">Volver al formulario</button>
 
     <br>
@@ -35,7 +39,7 @@
             <tr>
                 <td>{{this.title}}</td>
                 <td>${{this.price}}</td>
-                <td><img width="50" src={{this.thumbnail}} alt="not found"></td>
+                <td><img width="60" src={{this.thumbnail}} alt="not found"></td>
             </tr>
             {{/each}}
         </table>
