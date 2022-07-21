@@ -1,0 +1,51 @@
+<style>
+    strong {
+        color: #1c1cca;
+    }
+
+    span {
+        color: #81460f;
+    }
+
+    em {
+        font-style: italic;
+        color: #119c2f;
+    }
+</style>
+
+<div>
+    <h1>Centro de mensajes</h1>
+    <br>
+    <br>
+
+    <form id="messageForm">
+
+        <div class="form-group">
+            <input type="email" required class="form-control" id="email" name="email" placeholder="youremail@gmail.com">
+        </div>
+        <br>
+        {{#if mensajes.length }}
+        <div>
+            {{#each mensajes}}
+            <div>
+                <strong> {{this.email}} </strong>
+                <span> [{{this.date}}] :</span>
+                <em> {{this.text}} </em>
+            </div>
+            {{/each}}
+        </div>
+        <br>
+        <br>
+        {{else}}
+        <h3 class="alert alert-warning">No se encontraron mensajes</h3>
+        {{/if}}
+
+        <div>
+            <input type="text" required class="form-control" id="text" name="text" placeholder="Ingresa un mensaje...">
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary mt-3">Enviar!</button>
+        </div>
+    </form>
+
+</div>
