@@ -1,0 +1,54 @@
+{
+    "_id" : ObjectId("62de275dacae77c1e7ad2265"),
+    "name" : "Webcam Xiaomi",
+    "price" : 4999.0,
+    "description" : "Camara Full HD",
+    "code" : "WEX",
+    "stock" : 0.0,
+    "thumbnail" : "https://images.fravega.com/f300/965ec90b3ebd61a0d4c68497fdde79a8.jpg"
+}
+{
+    "_id" : ObjectId("62de275dacae77c1e7ad2266"),
+    "name" : "Teclado PC",
+    "price" : 1680.0,
+    "description" : "Verbatim USB Negro",
+    "code" : "TEV",
+    "stock" : 100.0,
+    "thumbnail" : "https://intermaco.com/productos/98121.jpg"
+}
+{
+    "_id" : ObjectId("62de275dacae77c1e7ad2268"),
+    "name" : "Mouse Gamer USB",
+    "price" : 4299.0,
+    "description" : "Logitech Negro",
+    "code" : "MOL",
+    "stock" : 0.0,
+    "thumbnail" : "https://logitechar.vteximg.com.br/arquivos/ids/156566-1000-1000/910-004344_1.png?v=636973475589400000"
+}
+{
+    "_id" : ObjectId("62de275dacae77c1e7ad2269"),
+    "name" : "Joistick Wireless",
+    "price" : 6190.0,
+    "description" : "Redragon Negro",
+    "code" : "JRE",
+    "stock" : 0.0,
+    "thumbnail" : "https://www.venex.com.ar/products_images/1534181389_ll.png"
+}
+{
+    "_id" : ObjectId("62de275dacae77c1e7ad226a"),
+    "name" : "Teclado Gamer USB",
+    "price" : 1400.0,
+    "description" : "Logitech Negro",
+    "code" : "TEL",
+    "stock" : 100.0,
+    "thumbnail" : "https://http2.mlstatic.com/D_NQ_NP_815666-MLA32722390520_102019-O.webp"
+}
+{
+    "_id" : ObjectId("62de2765acae77c1e7ad226b"),
+    "name" : "Estufa Electrica Tilcara",
+    "price" : 2900.0,
+    "description" : "Vertical Anticaída 1200w con llave de seguridad",
+    "code" : "EST",
+    "stock" : 100.0,
+    "thumbnail" : "https://astralproductos.com/wp-content/uploads/2018/04/Estufa-WCS-PNG-600x600.png"
+}

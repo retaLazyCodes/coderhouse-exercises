@@ -1,0 +1,60 @@
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad2257"),
+    "email" : "juanj@gmail.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-24T03:00:00.000+0000")
+}
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad2258"),
+    "email" : "ecommerce@ayuda.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-24T03:00:00.000+0000")
+}
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad2259"),
+    "email" : "juanj@gmail.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-25T03:00:00.000+0000")
+}
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad225a"),
+    "email" : "ecommerce@ayuda.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-25T03:00:00.000+0000")
+}
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad225b"),
+    "email" : "belu_02@gmail.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-25T03:00:00.000+0000")
+}
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad225c"),
+    "email" : "ecommerce@ayuda.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-25T03:00:00.000+0000")
+}
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad225d"),
+    "email" : "belu_02@gmail.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-26T03:00:00.000+0000")
+}
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad225e"),
+    "email" : "ecommerce@ayuda.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-26T03:00:00.000+0000")
+}
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad225f"),
+    "email" : "bretamar@gmail.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-27T03:00:00.000+0000")
+}
+{
+    "_id" : ObjectId("62de275bacae77c1e7ad2260"),
+    "email" : "ecommerce@ayuda.com",
+    "text" : "lorem ipsum...",
+    "date" : ISODate("2022-08-27T03:00:00.000+0000")
+}
