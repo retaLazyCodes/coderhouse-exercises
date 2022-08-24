@@ -6,7 +6,7 @@ const messageSchema = new Schema({
     type: Schema.Types.Mixed, required: true
   },
   text: String,
-  date: Date,
+  date: String,
 })
 
 messageSchema.set('toJSON', {
@@ -17,4 +17,4 @@ messageSchema.set('toJSON', {
 
 const Message = model('Message', messageSchema)
 
-module.exports = { Message }
+module.exports = Message 
