@@ -2,10 +2,9 @@ const express = require('express')
 const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
 const ProductDAO = require('./controllers/ProductDAO')
-const MessageDAO = require('./controllers/MessageDAO')
 const { createMysqlDB } = require('./options/createMysqlDB')
 const { mysqlOptions } = require('./options/MariaDB')
-const { sqliteOptions } = require('./options/SQlite')
+require('./options/mongodb')
 
 const app = express()
 const httpServer = new HttpServer(app)
@@ -31,13 +30,10 @@ app.set('view engine', 'hbs')
 app.set('views', __dirname + '/views')
 
 const productDAO = new ProductDAO(mysqlOptions, 'productos');
-const msgDAO = new MessageDAO(sqliteOptions, 'mensajes');
 
 (async () => {
-
   await createMysqlDB()
   await productDAO.createTable()
-  await msgDAO.createTable()
 })();
 
 const { router } = require('./routes/productos')
@@ -103,8 +99,16 @@ io.on('connection', async socket => {
 
   /* Escucho los mensajes enviado por el cliente y se los propago a todos */
   socket.on('newMessage', async message => {
-    const newMessage = {
-      email: message.email,
+    const newMessage = 
+    {
+      author: {
+        id: message.email,
+        nombre: message.nombre,
+        apellido: message.apellido,
+        edad: message.edad,
+        alias: message.alias,
+        avatar: message.avatar,
+      },
       text: message.text,
       date: new Date().toLocaleString()
     }

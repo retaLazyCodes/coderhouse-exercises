@@ -1,8 +1,8 @@
 const msgRouter = require('express').Router()
 const MessageDAO = require('../controllers/MessageDAO')
-const { sqliteOptions } = require('../options/SQlite')
+const { Messege } = require('../models/Message')
 
-const msgDao = new MessageDAO(sqliteOptions, 'mensajes');
+const msgDao = new MessageDAO(Messege);
 
 msgRouter.get('/mensajes', async function (req, res) {
   const messages = await msgDao.getAll()

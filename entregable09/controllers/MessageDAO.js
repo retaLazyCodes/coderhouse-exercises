@@ -1,30 +1,14 @@
-const knexLib = require('knex')
-
 module.exports = class MessageDAO {
-  constructor (config, tablename) {
-    this.knex = knexLib(config)
-    this.tablename = tablename
-  }
-
-  createTable () {
-    return this.knex.schema.createTableIfNotExists(this.tablename, table => {
-      table.increments('id').primary();
-      table.string('email', 50).notNullable();
-      table.string('date', 10).notNullable();
-      table.string('text');
-    })
+  constructor (model) {
+    this.model = model
   }
 
   async save (msj) {
-    await this.knex(this.tablename).insert(msj, ['id'])
+    return await this.model.create(msj)
   }
 
   async getAll () {
-    const result = await this.knex(this.tablename).select('*')
-    return JSON.parse(JSON.stringify(result))
+    return await this.model.find()
   }
 
-  close () {
-    this.knex.destroy();
-  }
 }

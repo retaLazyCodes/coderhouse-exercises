@@ -21,9 +21,17 @@ setTimeout(function () {
 }, 2000);
 
 function addMessage() {
-    const newMessage = {
-        email: document.getElementById('email').value,
-        text: document.getElementById('text').value
+    const newMessage = 
+    {
+      author: {
+        id: document.getElementById('email').value,
+        nombre: document.getElementById('name').value,
+        apellido: document.getElementById('lastName').value,
+        edad: document.getElementById('age').value,
+        alias: document.getElementById('alias').value,
+        avatar: document.getElementById('avatar').value,
+      },
+      text: document.getElementById('text').value,
     }
     console.log(newMessage)
     socket.emit('newMessage', newMessage)
