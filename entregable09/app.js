@@ -78,7 +78,11 @@ app.get('/mensajes/template', async (req, res) => {
 
 
 /**************** Socket.io **************/
-
+const util = require("util")
+const normalizr = require('normalizr')
+const normalize = normalizr.normalize
+const schema = normalizr.schema
+CHAT_DB = []
 
 /**************** Productos **************/
 io.on('connection', async socket => {
@@ -96,13 +100,6 @@ io.on('connection', async socket => {
 
 
   /**************** Mensajes **************/
-  const fs = require('fs').promises
-  const normalizr = require('normalizr')
-  const normalize = normalizr.normalize
-  const schema = normalizr.schema
-  const util = require("util")
-
-  CHAT_DB = [{id: 'mensajes', mensajes: []}]
 
   const mensajes = await msgDao.getAll()
   /* Envio los mensajes al cliente que se conectó */
@@ -110,7 +107,7 @@ io.on('connection', async socket => {
 
   /* Escucho los mensajes enviado por el cliente y se los propago a todos */
   socket.on('newMessage', async message => {
-    const newMessage = 
+    const newMessage =
     {
       email: message.email,
       nombre: message.nombre,
@@ -121,12 +118,10 @@ io.on('connection', async socket => {
       text: message.text,
       date: new Date().toLocaleString()
     }
-    CHAT_DB.mensajes.push(newMessage)
-    console.log("Mensajes totales ingresados al back")
-    const porc1=JSON.stringify(CHAT_DB.mensajes).length
-    console.log('longitud chat sin normalizar', porc1)
+    CHAT_DB.push(newMessage)
+    console.log(CHAT_DB)
 
-    fs.writeFile("mensajes.json", CHAT_DB).then(() => {
+    fs.promises.writeFile("mensajes.json", JSON.stringify(CHAT_DB)).then(() => {
       console.log("Mensajes de chat guardados en archivo")
     })
 
@@ -136,19 +131,24 @@ io.on('connection', async socket => {
       io.sockets.emit('mensajes', mensajes)
     })
 
-    const user= new schema.Entity("user", {}, {idAttribute: 'email'})
-    const chatSchema=new schema.Entity("author", {
-        author: user
-    }, {idAttribute: 'email'})
-    
+    const user = new schema.Entity("user", {}, { idAttribute: 'email' })
+    const chatSchema = new schema.Entity("author", {
+      author: user
+    }, { idAttribute: 'email' })
+
     const normalizedData = normalize(CHAT_DB, [chatSchema])
-    console.log(util.inspect(normalizedData, false,15,true))
 
-    const porc2=JSON.stringify(normalizedData).length
-    console.log('longitud chat normalizada',porc2)
+    console.log(normalizedData)
+    console.log(util.inspect(normalizedData, false, 15, true))
 
-    const porcentaje= (porc2*100)/porc1
-    console.log(`Porcentaje de compresión: ${porcentaje} %`) 
+    const porc1 = JSON.stringify(CHAT_DB).length
+    console.log('longitud chat sin normalizar', porc1)
+
+    const porc2 = JSON.stringify(normalizedData).length
+    console.log('longitud chat normalizada', porc2)
+
+    const porcentaje = (porc2 * 100) / porc1
+    console.log(`Porcentaje de compresión: ${porcentaje} %`)
   })
 })
 
