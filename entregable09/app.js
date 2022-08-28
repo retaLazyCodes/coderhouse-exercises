@@ -79,6 +79,8 @@ app.get('/mensajes/template', async (req, res) => {
 
 /**************** Socket.io **************/
 
+
+/**************** Productos **************/
 io.on('connection', async socket => {
   console.log('Nuevo cliente conectado!')
 
@@ -93,6 +95,15 @@ io.on('connection', async socket => {
   });
 
 
+  /**************** Mensajes **************/
+  const fs = require('fs').promises
+  const normalizr = require('normalizr')
+  const normalize = normalizr.normalize
+  const schema = normalizr.schema
+  const util = require("util")
+
+  CHAT_DB = [{id: 'mensajes', mensajes: []}]
+
   const mensajes = await msgDao.getAll()
   /* Envio los mensajes al cliente que se conectó */
   socket.emit('mensajes', mensajes)
@@ -101,25 +112,44 @@ io.on('connection', async socket => {
   socket.on('newMessage', async message => {
     const newMessage = 
     {
-      author: {
-        id: message.email,
-        nombre: message.nombre,
-        apellido: message.apellido,
-        edad: message.edad,
-        alias: message.alias,
-        avatar: message.avatar,
-      },
+      email: message.email,
+      nombre: message.nombre,
+      apellido: message.apellido,
+      edad: message.edad,
+      alias: message.alias,
+      avatar: message.avatar,
       text: message.text,
       date: new Date().toLocaleString()
     }
+    CHAT_DB.mensajes.push(newMessage)
+    console.log("Mensajes totales ingresados al back")
+    const porc1=JSON.stringify(CHAT_DB.mensajes).length
+    console.log('longitud chat sin normalizar', porc1)
+
+    fs.writeFile("mensajes.json", CHAT_DB).then(() => {
+      console.log("Mensajes de chat guardados en archivo")
+    })
+
     await msgDao.save(newMessage).then(async () => {
+      console.log("Mensajes de chat guardados en mongodb")
       const mensajes = await msgDao.getAll()
       io.sockets.emit('mensajes', mensajes)
     })
-  });
+
+    const user= new schema.Entity("user", {}, {idAttribute: 'email'})
+    const chatSchema=new schema.Entity("author", {
+        author: user
+    }, {idAttribute: 'email'})
+    
+    const normalizedData = normalize(CHAT_DB, [chatSchema])
+    console.log(util.inspect(normalizedData, false,15,true))
+
+    const porc2=JSON.stringify(normalizedData).length
+    console.log('longitud chat normalizada',porc2)
+
+    const porcentaje= (porc2*100)/porc1
+    console.log(`Porcentaje de compresión: ${porcentaje} %`) 
+  })
 })
-
-module.exports = { HttpServer }
-
 
 module.exports = { httpServer };

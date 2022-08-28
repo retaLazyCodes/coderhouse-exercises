@@ -2,9 +2,12 @@ const mongoose = require('mongoose')
 const { Schema, model } = mongoose
 
 const messageSchema = new Schema({
-  author: {
-    type: Schema.Types.Mixed, required: true
-  },
+  email: String,
+  nombre: String,
+  apellido: String,
+  edad: Number,
+  alias: String,
+  avatar: String,
   text: String,
   date: String,
 })
@@ -12,6 +15,7 @@ const messageSchema = new Schema({
 messageSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     delete returnedObject.__v
+    delete returnedObject._id
   }
 })
 
