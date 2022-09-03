@@ -1,44 +1,53 @@
+console.log("dfghf")
 const socket = io.connect();
 
 let listaTemplate = ''
 
 /* si recibo productos, los muestro usando un template de handlebars compilado */
 socket.on('productos', async function (productos) {
-    console.log('productos socket client')
+  console.log('productos socket client')
 
-    const response = await fetch('/productos/template')
-    const data = await response.text()
-    listaTemplate = Handlebars.compile(data)
+  const response = await fetch('/productos/template')
+  const data = await response.text()
+  listaTemplate = Handlebars.compile(data)
 
-    document.getElementById('productos').innerHTML = data2TableHBS(productos)
+  document.getElementById('productos').innerHTML = data2TableHBS(productos)
 });
 
 /* obtengo el formulario */
 const form = document.querySelector('.productForm');
 
 form.addEventListener('submit', event => {
-    console.log(listaTemplate)
-    event.preventDefault();
-    const data = { title: form[0].value, price: form[1].value, thumbnail: form[2].value };
+  console.log(listaTemplate)
+  event.preventDefault()
+  const data = { title: form[0].value, price: form[1].value, thumbnail: form[2].value }
 
-    fetch('/api/productos', {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(data)
+  fetch('/api/productos', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(data)
+  })
+    .then(productos => {
+      form.reset();
+      socket.emit('newProduct', 'ok')
     })
-        .then(productos => {
-            form.reset();
-            socket.emit('newProduct', 'ok');
-        })
-        .catch(error => {
-            console.log('ERROR', error);
-        });
+    .catch(error => {
+      console.log('ERROR', error)
+    });
 });
 
-function data2TableHBS(productos) {
-    console.log(productos);
-    let html = listaTemplate({ productos: productos });
-    return html;
+function data2TableHBS (productos) {
+  console.log(productos);
+  let html = listaTemplate({ productos: productos })
+  return html
 }
+
+// llamar al endpoint para terminar la sesión
+
+const btn = document.getElementById('logoutbtn')
+
+btn.addEventListener('click', evt => {
+  window.location.href = '/logout';
+})

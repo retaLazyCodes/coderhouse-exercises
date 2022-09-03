@@ -1,12 +1,12 @@
 h1 {
-    color: blue;
+  color: blue;
 }
 
 label {
-    font-weight: bold;
-    font-style: italic;
+  font-weight: bold;
+  font-style: italic;
 }
 
 .jumbotron {
-    min-height: 100vh;
+  min-height: 100vh;
 }

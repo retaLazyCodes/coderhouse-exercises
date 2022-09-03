@@ -1,0 +1,58 @@
+<div class="container mt-3">
+
+  <div class="container alert alert-success">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 style="color:darkgreen">Bienvenido {{this.username}}</h1>
+      </div>
+      <div class="col-md-6">
+        <button style="padding: 10px; border-radius: 3px;" class="border-0 btn btn-warning float-right"
+          id="logoutbtn">Desloguear</button>
+      </div>
+    </div>
+  </div>
+
+  <div class=" jumbotron">
+    <h1>Ingrese Producto</h1>
+    <br>
+
+    <form autocomplete="off" class="productForm">
+      <!-- Campo nombre del producto -->
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" class="form-control" type="text" name="title" required>
+      </div>
+
+      <!-- Campo precio del producto -->
+      <div class="form-group">
+        <label for="precio">Precio</label>
+        <input id="precio" class="form-control" type="number" step="0.1" name="price" placeholder="0.00" required>
+      </div>
+
+      <!-- Campo url de la foto del producto -->
+      <div class="form-group">
+        <label for="foto">Foto URL</label>
+        <input id="foto" class="form-control" type="url" name="thumbnail">
+      </div>
+
+      <!-- Botón de envío -->
+      <input type="submit" class="btn btn-success mt-3" value="Enviar">
+    </form>
+    <hr>
+    <button class="btn btn-info mt-3" onclick="location.href = '/productos'">Vista handlebars
+      productos</button>
+    <br>
+    <br>
+    <div id="productos"></div>
+    <br>
+    <br>
+    <div id="mensajes"></div>
+
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/handlebars-v4.7.6.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/messages.js"></script>

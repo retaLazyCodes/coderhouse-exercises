@@ -2,9 +2,9 @@ const express = require('express')
 const { Server: HttpServer } = require('http')
 const { Server: IOServer } = require('socket.io')
 const ProductDAO = require('./controllers/ProductDAO')
-const { createMysqlDB } = require('./options/createMysqlDB')
-const { mysqlOptions } = require('./options/MariaDB')
+const Product = require('./models/Product')
 require('./options/mongodb')
+require('dotenv').config()
 
 const app = express()
 const httpServer = new HttpServer(app)
@@ -29,15 +29,30 @@ app.engine('hbs', engine({
 app.set('view engine', 'hbs')
 app.set('views', __dirname + '/views')
 
-const productDAO = new ProductDAO(mysqlOptions, 'productos');
 
-(async () => {
-  await createMysqlDB()
-  await productDAO.createTable()
-})();
+/**************** Sessions Config  **************/
 
-const { router } = require('./routes/productos')
-app.use('/api', router)
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
+
+app.use(session({
+  secret: 'foo',
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URL,
+    mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
+    ttl: 600
+  }),
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+/**************** Routers **************/
+
+const productDAO = new ProductDAO(Product);
+
+const { productsRouter } = require('./routes/productos')
+app.use('/api', productsRouter)
 
 const { msgRouter, msgDao } = require('./routes/messages')
 app.use('/api', msgRouter)
@@ -45,9 +60,26 @@ app.use('/api', msgRouter)
 const { fakeProductsRouter } = require('./routes/faker/fakeProductsRouter')
 app.use('/api', fakeProductsRouter)
 
+const { sessionRouter } = require('./routes/session')
+app.use('/api/sessions', sessionRouter)
 
 
 /**************** Render views **************/
+
+app.get('/', async (req, res) => {
+  if (!req.session.user) return res.redirect('/login');
+  res.render('home.hbs', { username: req.session.user.nombre, layout: 'index' })
+});
+
+app.get('/login', (req, res) => {
+  if (req.session.user) return res.redirect('/');
+  res.render('login.hbs', { layout: 'index' });
+})
+
+app.get('/logout', (req, res) => {
+  if (!req.session.user) return res.redirect('/');
+  res.render('logout.hbs', { username: req.session.user.nombre, layout: 'index' });
+})
 
 app.get('/productos', async (req, res) => {
   const productos = await productDAO.getAll()
@@ -78,11 +110,20 @@ app.get('/mensajes/template', async (req, res) => {
 
 
 /**************** Socket.io **************/
+
 const util = require("util")
 const normalizr = require('normalizr')
 const normalize = normalizr.normalize
+const denormalize = normalizr.denormalize
 const schema = normalizr.schema
-CHAT_DB = []
+let CHAT_DB = { id: "mensajes", mensajes: [] }
+
+if (fs.existsSync('./mensajes.json')) {
+  data = fs.readFileSync('./mensajes.json',
+    { encoding: 'utf8', flag: 'r' });
+  CHAT_DB = JSON.parse(data)
+}
+console.log(CHAT_DB)
 
 /**************** Productos **************/
 io.on('connection', async socket => {
@@ -100,46 +141,59 @@ io.on('connection', async socket => {
 
 
   /**************** Mensajes **************/
-
   const mensajes = await msgDao.getAll()
   /* Envio los mensajes al cliente que se conectó */
-  socket.emit('mensajes', mensajes)
+  socket.emit('mensajes', CHAT_DB)
 
   /* Escucho los mensajes enviado por el cliente y se los propago a todos */
   socket.on('newMessage', async message => {
     const newMessage =
     {
-      email: message.email,
-      nombre: message.nombre,
-      apellido: message.apellido,
-      edad: message.edad,
-      alias: message.alias,
-      avatar: message.avatar,
+      author: {
+        email: message.email,
+        nombre: message.nombre,
+        apellido: message.apellido,
+        edad: message.edad,
+        alias: message.alias,
+        avatar: message.avatar,
+      },
       text: message.text,
       date: new Date().toLocaleString()
     }
-    CHAT_DB.push(newMessage)
+    CHAT_DB.mensajes.push(newMessage)
     console.log(CHAT_DB)
 
     fs.promises.writeFile("mensajes.json", JSON.stringify(CHAT_DB)).then(() => {
       console.log("Mensajes de chat guardados en archivo")
     })
 
-    await msgDao.save(newMessage).then(async () => {
-      console.log("Mensajes de chat guardados en mongodb")
-      const mensajes = await msgDao.getAll()
-      io.sockets.emit('mensajes', mensajes)
-    })
+    // await msgDao.save(newMessage).then(async () => {
+    //   console.log("Mensajes de chat guardados en mongodb")
+    //   const mensajes = await msgDao.getAll()
+    //   io.sockets.emit('mensajes', mensajes)
+    // })
 
-    const user = new schema.Entity("user", {}, { idAttribute: 'email' })
-    const chatSchema = new schema.Entity("author", {
-      author: user
-    }, { idAttribute: 'email' })
 
-    const normalizedData = normalize(CHAT_DB, [chatSchema])
+    const authorSchema = new schema.Entity("author", {}, { idAttribute: 'email' })
+    const messageSchema = new schema.Entity(
+      "post",
+      {
+        author: authorSchema
+      },
+      { idAttribute: (value) => 123 }
+    )
+
+    const normalizedData = normalize(CHAT_DB.mensajes, [messageSchema])
 
     console.log(normalizedData)
     console.log(util.inspect(normalizedData, false, 15, true))
+
+    let msg = denormalize(
+      normalizedData.result,
+      [messageSchema],
+      normalizedData.entities
+    );
+    console.log("Denormalizado: ", msg)
 
     const porc1 = JSON.stringify(CHAT_DB).length
     console.log('longitud chat sin normalizar', porc1)
@@ -149,6 +203,9 @@ io.on('connection', async socket => {
 
     const porcentaje = (porc2 * 100) / porc1
     console.log(`Porcentaje de compresión: ${porcentaje} %`)
+
+    io.sockets.emit('mensajes', CHAT_DB)
+
   })
 })
 

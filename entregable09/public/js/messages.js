@@ -2,7 +2,7 @@ let msjsTemplate = ''
 let messageForm = null
 
 /* si recibo mensajes, los muestro usando un template de handlebars compilado */
-socket.on('mensajes', async function (mensajes) {
+socket.on('mensajes', async function ({ mensajes }) {
   const response = await fetch('/mensajes/template')
   const data = await response.text()
   msjsTemplate = Handlebars.compile(data)
@@ -37,7 +37,44 @@ function addMessage () {
 }
 
 function data2HBS (mensajes) {
-  console.log(mensajes);
-  let html = msjsTemplate({ mensajes: mensajes });
+  const denormalizedMsgs = denormalizeMessages(mensajes)
+  let html = msjsTemplate({ mensajes: denormalizedMsgs });
   return html;
+}
+
+function denormalizeMessages (mensajes) {
+
+  const authorSchema = new normalizr.schema.Entity("author", {}, { idAttribute: 'email' })
+  const messageSchema = new normalizr.schema.Entity(
+    "post",
+    {
+      author: authorSchema
+    },
+    { idAttribute: "text" },
+  )
+  const normalizedData = normalizr.normalize(mensajes, [messageSchema])
+
+  const porcNormalizado = JSON.stringify(normalizedData).length
+  console.log("Normalizado :", porcNormalizado)
+  console.log(normalizedData)
+
+  let denormalizedMsgs = normalizr.denormalize(
+    normalizedData.result,
+    [messageSchema],
+    normalizedData.entities
+  );
+  console.log(denormalizedMsgs)
+  const porcDenormalizado = JSON.stringify(denormalizedMsgs).length
+  console.log("Denormalizado: ", porcDenormalizado)
+
+
+  const porcentaje = (porcNormalizado * 100) / porcDenormalizado
+  console.log(`Porcentaje de compresión: ${parseInt(porcentaje)} %`)
+
+  setTimeout(function () {
+    document.getElementById('compression').innerHTML = `Compresión: ${parseInt(porcentaje)} %`
+  }, 2000);
+
+
+  return denormalizedMsgs
 }
