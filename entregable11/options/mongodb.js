@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
-const connectionString = 'mongodb://127.0.0.1:27017/chat_db'
+const connectionString = process.env.MONGO_URL
 
 // conexión a mongodb
 mongoose.connect(connectionString, {
