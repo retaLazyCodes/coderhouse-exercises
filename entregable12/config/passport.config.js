@@ -31,7 +31,6 @@ const initializePassport = () => {
     try {
       if (!email || !password) return done(null, false);
       let user = await User.findOne({ email: email });
-      console.log(user)
       if (!user) return done(null, false);
       if (!isValidPassword(user, password)) return done(null, false);
       return done(null, user)

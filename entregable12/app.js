@@ -68,6 +68,12 @@ app.use('/api', fakeProductsRouter)
 const { sessionRouter } = require('./routes/session')
 app.use('/api/sessions', sessionRouter)
 
+const { infoRouter } = require('./routes/info')
+app.use('/info', infoRouter)
+
+const { randomRouter } = require('./routes/random')
+app.use('/api/randoms', randomRouter)
+
 const { viewsRouter } = require('./routes/views')
 app.use('/', viewsRouter)
 
