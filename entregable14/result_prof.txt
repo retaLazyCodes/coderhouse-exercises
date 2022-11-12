@@ -1,0 +1,330 @@
+Statistical profiling result from isolate-0x51281a0-28435-v8.log, (931 ticks, 0 unaccounted, 0 excluded).
+
+ [Shared libraries]:
+   ticks  total  nonlib   name
+    539   57.9%          /home/retazzz/.nvm/versions/node/v18.0.0/bin/node
+      9    1.0%          /usr/lib/x86_64-linux-gnu/libc-2.31.so
+      1    0.1%          [vdso]
+      1    0.1%          /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.28
+
+ [JavaScript]:
+   ticks  total  nonlib   name
+      1    0.1%    0.3%  RegExp: ^[\^_`a-zA-Z\-0-9!#$%&'*+.|~]+$
+      1    0.1%    0.3%  RegExp: ^[!#$%&'*+.^_`|~0-9A-Za-z-]+\/[!#$%&'*+.^_`|~0-9A-Za-z-]+$
+      1    0.1%    0.3%  LazyCompile: *nextTick node:internal/process/task_queues:103:18
+      1    0.1%    0.3%  Function: ^update node:internal/crypto/hash:95:40
+      1    0.1%    0.3%  Function: ^setHeader node:_http_outgoing:574:57
+      1    0.1%    0.3%  Function: ^readableAddChunk /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_readable.js:249:26
+      1    0.1%    0.3%  Function: ^parserOnIncoming node:_http_server:866:26
+      1    0.1%    0.3%  Function: ^parserOnHeadersComplete node:_http_common:72:33
+      1    0.1%    0.3%  Function: ^onParserExecute node:_http_server:688:25
+      1    0.1%    0.3%  Function: ^normalizeParseOptions /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/qs/lib/parse.js:204:59
+      1    0.1%    0.3%  Function: ^module.exports /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/qs/lib/parse.js:239:27
+      1    0.1%    0.3%  Function: ^header /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:777:29
+      1    0.1%    0.3%  Function: ^getDefaultTriggerAsyncId node:internal/async_hooks:431:34
+      1    0.1%    0.3%  Function: ^get /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_duplex.js:120:20
+      1    0.1%    0.3%  Function: ^fresh /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/parseurl/index.js:153:16
+      1    0.1%    0.3%  Function: ^finalhandler /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/finalhandler/index.js:77:23
+      1    0.1%    0.3%  Function: ^fastparse /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/parseurl/index.js:95:20
+      1    0.1%    0.3%  Function: ^configure /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/safe-stable-stringify/index.js:214:20
+      1    0.1%    0.3%  Function: ^assert node:internal/assert:11:16
+      1    0.1%    0.3%  Function: ^_storeHeader node:_http_outgoing:374:22
+      1    0.1%    0.3%  Function: ^_destroy node:_http_incoming:176:55
+      1    0.1%    0.3%  Function: ^Writable.write /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_writable.js:288:37
+      1    0.1%    0.3%  Function: ^ServerResponse node:_http_server:179:24
+      1    0.1%    0.3%  Function: ^Hash node:internal/crypto/hash:58:14
+      1    0.1%    0.3%  Function: ^<anonymous> node:_http_outgoing:558:44
+      1    0.1%    0.3%  Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:31:11
+
+ [C++]:
+   ticks  total  nonlib   name
+    301   32.3%   79.0%  epoll_pwait
+     12    1.3%    3.1%  __write
+      9    1.0%    2.4%  fwrite
+      7    0.8%    1.8%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+      7    0.8%    1.8%  __libc_read
+      3    0.3%    0.8%  __libc_malloc
+      3    0.3%    0.8%  _IO_file_xsputn
+      2    0.2%    0.5%  accept4
+      2    0.2%    0.5%  __pthread_cond_wait
+      2    0.2%    0.5%  __pthread_cond_signal
+      1    0.1%    0.3%  std::ostream& std::ostream::_M_insert<long>(long)
+      1    0.1%    0.3%  shutdown
+      1    0.1%    0.3%  epoll_ctl
+      1    0.1%    0.3%  cfree
+      1    0.1%    0.3%  __munmap
+      1    0.1%    0.3%  __GI___pthread_rwlock_unlock
+      1    0.1%    0.3%  __GI___pthread_mutex_lock
+
+ [Summary]:
+   ticks  total  nonlib   name
+     26    2.8%    6.8%  JavaScript
+    355   38.1%   93.2%  C++
+     35    3.8%    9.2%  GC
+    550   59.1%          Shared libraries
+
+ [C++ entry points]:
+   ticks    cpp   total   name
+      9   29.0%    1.0%  __write
+      8   25.8%    0.9%  fwrite
+      7   22.6%    0.8%  std::basic_ostream<char, std::char_traits<char> >& std::__ostream_insert<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*, long)
+      3    9.7%    0.3%  _IO_file_xsputn
+      1    3.2%    0.1%  std::ostream& std::ostream::_M_insert<long>(long)
+      1    3.2%    0.1%  cfree
+      1    3.2%    0.1%  __libc_malloc
+      1    3.2%    0.1%  __GI___pthread_mutex_lock
+
+ [Bottom up (heavy) profile]:
+  Note: percentage shows a share of a particular caller in the total
+  amount of its parent calls.
+  Callers occupying less than 1.0% are not shown.
+
+   ticks parent  name
+    539   57.9%  /home/retazzz/.nvm/versions/node/v18.0.0/bin/node
+    297   55.1%    /home/retazzz/.nvm/versions/node/v18.0.0/bin/node
+     36   12.1%      Function: ^compileFunction node:vm:308:25
+     35   97.2%        Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
+     35  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+     29   82.9%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      6   17.1%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1    2.8%        LazyCompile: ~wrapSafe node:internal/modules/cjs/loader:1017:18
+      1  100.0%          LazyCompile: ~Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1114:37
+     20    6.7%      Function: ^writevGeneric node:internal/stream_base_commons:122:23
+     20  100.0%        Function: ^Socket._writeGeneric node:net:797:42
+     20  100.0%          Function: ^Socket._writev node:net:829:36
+     20  100.0%            Function: ^doWrite node:internal/streams/writable:399:17
+     19    6.4%      Function: ^memoryUsage node:internal/process/per_thread:168:23
+     19  100.0%        Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:45:20
+     19  100.0%          Function: ^handle /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:86:49
+     19  100.0%            Function: ^next /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/route.js:116:16
+     16    5.4%      /home/retazzz/.nvm/versions/node/v18.0.0/bin/node
+      4   25.0%        Function: ^header /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:777:29
+      3   75.0%          Function: ^json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      3  100.0%            Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:45:20
+      1   25.0%          Function: ^send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      1  100.0%            Function: ^json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      2   12.5%        LazyCompile: ~header /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:777:29
+      1   50.0%          LazyCompile: ~send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      1  100.0%            LazyCompile: ~json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      1   50.0%          LazyCompile: ~json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      1  100.0%            LazyCompile: ~<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:45:20
+      2   12.5%        Function: ^strEscape /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/safe-stable-stringify/index.js:57:20
+      2  100.0%          Function: ^stringifyFnReplacer /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/safe-stable-stringify/index.js:231:32
+      2  100.0%            Function: ^stringifyFnReplacer /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/safe-stable-stringify/index.js:231:32
+      2   12.5%        Function: ^format /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/content-type/index.js:65:17
+      2  100.0%          Function: ^setCharset /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/utils.js:248:41
+      2  100.0%            Function: ^send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      1    6.3%        LazyCompile: ~pathtoRegexp /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/path-to-regexp/index.js:28:22
+      1  100.0%          LazyCompile: ~Layer /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:33:15
+      1  100.0%            LazyCompile: ~use /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:439:25
+      1    6.3%        Function: ^stat node:internal/modules/cjs/loader:151:14
+      1  100.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:495:28
+      1  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:853:35
+      1    6.3%        Function: ^set /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/application.js:359:23
+      1  100.0%          Function: ^app.<computed> /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/application.js:490:25
+      1  100.0%            Function: ^json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      1    6.3%        Function: ^parse /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/content-type/index.js:106:16
+      1  100.0%          Function: ^setCharset /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/utils.js:248:41
+      1  100.0%            Function: ^send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      1    6.3%        Function: ^expressInit /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/middleware/init.js:29:30
+      1  100.0%          Function: ^handle /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:86:49
+      1  100.0%            Function: ^trim_prefix /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:293:23
+      1    6.3%        Function: ^FastBuffer node:internal/buffer:958:14
+      1  100.0%          Function: ^createUnsafeBuffer node:internal/buffer:1059:28
+      1  100.0%            Function: ^allocate node:buffer:400:18
+     15    5.1%      Function: ^handleWriteReq node:internal/stream_base_commons:45:24
+     15  100.0%        Function: ^writeGeneric node:internal/stream_base_commons:147:22
+     10   66.7%          Function: ^Socket._writeGeneric node:net:797:42
+     10  100.0%            Function: ^Socket._write node:net:834:35
+      4   26.7%          LazyCompile: *_write node:internal/streams/writable:284:16
+      4  100.0%            Function: ^Writable.write node:internal/streams/writable:334:36
+      1    6.7%          LazyCompile: *writeOrBuffer node:internal/streams/writable:366:23
+      1  100.0%            Function: ^_write node:internal/streams/writable:284:16
+     14    4.7%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:315:27
+     10   71.4%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:348:29
+      2   20.0%          Function: ~<anonymous> node:http:1:1
+      2  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      2   20.0%          Function: ~<anonymous> node:_http_client:1:1
+      2  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      1   10.0%          LazyCompile: ~lazyWebCrypto node:crypto:125:23
+      1  100.0%            LazyCompile: ~get node:crypto:358:8
+      1   10.0%          LazyCompile: ~lazyLoadStreams node:fs:2872:25
+      1  100.0%            LazyCompile: ~get ReadStream node:fs:3015:17
+      1   10.0%          LazyCompile: ~initCJSParse node:internal/modules/esm/translators:58:28
+      1  100.0%            LazyCompile: ~commonjsStrategy node:internal/modules/esm/translators:148:60
+      1   10.0%          Function: ~<anonymous> node:internal/cluster/primary:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      1   10.0%          Function: ~<anonymous> node:internal/child_process:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      1   10.0%          Function: ~<anonymous> node:child_process:1:1
+      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      3   21.4%        LazyCompile: ~compileForPublicLoader node:internal/bootstrap/loaders:262:25
+      2   66.7%          Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1   50.0%            LazyCompile: ~Module._load node:internal/modules/cjs/loader:759:24
+      1   50.0%            Function: ^Module._load node:internal/modules/cjs/loader:759:24
+      1   33.3%          LazyCompile: ~loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1  100.0%            LazyCompile: ~builtinStrategy node:internal/modules/esm/translators:254:58
+      1    7.1%        Function: ^compileForPublicLoader node:internal/bootstrap/loaders:262:25
+      1  100.0%          Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:759:24
+     11    3.7%      LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:315:27
+     11  100.0%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:348:29
+      2   18.2%          LazyCompile: ~initializeCJSLoader node:internal/bootstrap/pre_execution:514:29
+      2  100.0%            LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:30:36
+      2   18.2%          Function: ~<anonymous> node:internal/modules/esm/loader:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      2   18.2%          Function: ~<anonymous> node:internal/modules/esm/fetch_module:1:1
+      2  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      1    9.1%          LazyCompile: ~initializeSourceMapsHandlers node:internal/bootstrap/pre_execution:553:38
+      1  100.0%            LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:30:36
+      1    9.1%          Function: ~<anonymous> node:internal/process/esm_loader:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      1    9.1%          Function: ~<anonymous> node:internal/modules/esm/get_source:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      1    9.1%          Function: ~<anonymous> node:internal/fs/promises:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      1    9.1%          Function: ~<anonymous> node:internal/blocklist:1:1
+      1  100.0%            LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:315:27
+      8    2.7%      Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:45:20
+      8  100.0%        Function: ^handle /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:86:49
+      8  100.0%          Function: ^next /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/route.js:116:16
+      8  100.0%            Function: ^dispatch /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/route.js:98:45
+      7    2.4%      Function: ^writeHead node:_http_server:269:19
+      7  100.0%        Function: ^_implicitHeader node:_http_server:264:68
+      7  100.0%          Function: ^write_ node:_http_outgoing:730:16
+      7  100.0%            Function: ^end node:_http_outgoing:833:45
+      7    2.4%      Function: ^stringify /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:1145:20
+      7  100.0%        Function: ^json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      7  100.0%          Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:45:20
+      7  100.0%            Function: ^handle /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:86:49
+      6    2.0%      Function: ^<anonymous> /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/request.js:467:36
+      6  100.0%        /home/retazzz/.nvm/versions/node/v18.0.0/bin/node
+      6  100.0%          Function: ^send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      6  100.0%            Function: ^json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      5    1.7%      LazyCompile: *next /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:177:16
+      3   60.0%        Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:31:11
+      3  100.0%          Function: ^handle /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:86:49
+      3  100.0%            Function: ^trim_prefix /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:293:23
+      2   40.0%        Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/utils.js:12:29
+      2  100.0%          Function: ^handle /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:86:49
+      2  100.0%            Function: ^trim_prefix /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:293:23
+      5    1.7%      Function: ^nextTick node:internal/process/task_queues:103:18
+      1   20.0%        Function: ^resume node:internal/streams/readable:989:16
+      1  100.0%          Function: ^Readable.resume node:internal/streams/readable:975:37
+      1  100.0%            Function: ^_dump node:_http_incoming:367:49
+      1   20.0%        Function: ^onwrite node:internal/streams/writable:426:17
+      1  100.0%          Function: ^afterWriteDispatched node:internal/stream_base_commons:155:30
+      1  100.0%            Function: ^writevGeneric node:internal/stream_base_commons:122:23
+      1   20.0%        Function: ^onwrite /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_writable.js:444:17
+      1  100.0%          Function: ^WritableState.onwrite /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_writable.js:159:27
+      1  100.0%            Function: ^log /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/winston/lib/winston/transports/console.js:44:6
+      1   20.0%        Function: ^onDestroy node:internal/streams/destroy:80:21
+      1  100.0%          Function: ^onError node:_http_incoming:377:17
+      1  100.0%            Function: ^processTicksAndRejections node:internal/process/task_queues:67:35
+      1   20.0%        Function: ^endReadable node:internal/streams/readable:1327:21
+      1  100.0%          Function: ^Readable.read node:internal/streams/readable:402:35
+      1  100.0%            Function: ^resume_ node:internal/streams/readable:996:17
+      5    1.7%      Function: ^end node:_http_outgoing:833:45
+      5  100.0%        Function: ^send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      5  100.0%          Function: ^json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      5  100.0%            Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:45:20
+      4    1.3%      Function: ^send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      4  100.0%        Function: ^json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      4  100.0%          Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:45:20
+      4  100.0%            Function: ^handle /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:86:49
+      4    1.3%      Function: ^resOnFinish node:_http_server:808:21
+      2   50.0%        LazyCompile: *emit node:events:475:44
+      2  100.0%          Function: ^onFinish node:_http_outgoing:828:18
+      2  100.0%            Function: ^callback node:internal/streams/writable:551:44
+      2   50.0%        Function: ^emit node:events:475:44
+      2  100.0%          Function: ^onFinish node:_http_outgoing:828:18
+      2  100.0%            Function: ^callback node:internal/streams/writable:551:44
+      4    1.3%      Function: ^parse /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/content-type/index.js:106:16
+      4  100.0%        Function: ^setCharset /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/utils.js:248:41
+      4  100.0%          Function: ^send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      4  100.0%            Function: ^json /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:250:25
+      4    1.3%      Function: ^expressInit /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/middleware/init.js:29:30
+      4  100.0%        Function: ^handle /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:86:49
+      4  100.0%          Function: ^trim_prefix /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:293:23
+      3   75.0%            LazyCompile: *next /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:177:16
+      1   25.0%            Function: ^<anonymous> /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:280:64
+      4    1.3%      Function: ^_storeHeader node:_http_outgoing:374:22
+      4  100.0%        Function: ^writeHead node:_http_server:269:19
+      4  100.0%          Function: ^_implicitHeader node:_http_server:264:68
+      4  100.0%            Function: ^write_ node:_http_outgoing:730:16
+      4    1.3%      Function: ^_send node:_http_outgoing:319:49
+      3   75.0%        Function: ^write_ node:_http_outgoing:730:16
+      3  100.0%          Function: ^end node:_http_outgoing:833:45
+      3  100.0%            Function: ^send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      1   25.0%        LazyCompile: ~write_ node:_http_outgoing:730:16
+      1  100.0%          LazyCompile: ~end node:_http_outgoing:833:45
+      1  100.0%            LazyCompile: ~send /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/response.js:111:25
+      4    1.3%      Function: ^Hash node:internal/crypto/hash:58:14
+      4  100.0%        Function: ^createHash node:crypto:132:20
+      4  100.0%          Function: ^entitytag /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/etag/index.js:39:20
+      4  100.0%            Function: ^etag /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/etag/index.js:70:15
+      4    1.3%      Function: ^<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/utils.js:12:29
+      4  100.0%        Function: ^handle /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/layer.js:86:49
+      4  100.0%          Function: ^trim_prefix /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:293:23
+      4  100.0%            LazyCompile: *next /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/router/index.js:177:16
+      3    1.0%      Function: ^readPackage node:internal/modules/cjs/loader:291:21
+      2   66.7%        LazyCompile: ~resolveExports node:internal/modules/cjs/loader:473:24
+      1   50.0%          LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:495:28
+      1  100.0%            LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:853:35
+      1   50.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:495:28
+      1  100.0%            LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:853:35
+      1   33.3%        Function: ^resolveExports node:internal/modules/cjs/loader:473:24
+      1  100.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:495:28
+      1  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:853:35
+      3    1.0%      Function: ^read node:internal/modules/package_json_reader:16:14
+      3  100.0%        Function: ^readPackage node:internal/modules/cjs/loader:291:21
+      1   33.3%          LazyCompile: ~resolveExports node:internal/modules/cjs/loader:473:24
+      1  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:495:28
+      1   33.3%          Function: ^tryPackage node:internal/modules/cjs/loader:339:20
+      1  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:495:28
+      1   33.3%          Function: ^resolveExports node:internal/modules/cjs/loader:473:24
+      1  100.0%            Function: ^Module._findPath node:internal/modules/cjs/loader:495:28
+      3    1.0%      Function: ^emitCloseNT node:_http_server:855:21
+      2   66.7%        LazyCompile: *processTicksAndRejections node:internal/process/task_queues:67:35
+      1   33.3%        Function: ^processTicksAndRejections node:internal/process/task_queues:67:35
+
+    301   32.3%  epoll_pwait
+
+     12    1.3%  __write
+      9   75.0%    /home/retazzz/.nvm/versions/node/v18.0.0/bin/node
+      1   11.1%      LazyCompile: ~setupWarningHandler node:internal/bootstrap/pre_execution:165:29
+      1  100.0%        LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:30:36
+      1  100.0%          Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   11.1%      LazyCompile: ~setupFetch node:internal/bootstrap/pre_execution:176:20
+      1  100.0%        LazyCompile: ~prepareMainThreadExecution node:internal/bootstrap/pre_execution:30:36
+      1  100.0%          Function: ~<anonymous> node:internal/main/run_main_module:1:1
+      1   11.1%      LazyCompile: ~onwrite /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_writable.js:444:17
+      1  100.0%        LazyCompile: ~WritableState.onwrite /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_writable.js:159:27
+      1  100.0%          LazyCompile: ~_write /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/winston-transport/index.js:69:51
+      1  100.0%            LazyCompile: ~doWrite /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_writable.js:404:17
+      1   11.1%      LazyCompile: ~maybeCacheSourceMap node:internal/source_map/source_map_cache:74:29
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1059:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1114:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1   11.1%      LazyCompile: ~lazyrouter /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/application.js:144:37
+      1  100.0%        LazyCompile: ~use /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/express/lib/application.js:194:23
+      1  100.0%          Script: ~<anonymous> file:///home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/index.js:1:1
+      1  100.0%            /home/retazzz/.nvm/versions/node/v18.0.0/bin/node
+      1   11.1%      LazyCompile: ~insert node:internal/timers:355:16
+      1  100.0%        LazyCompile: ~setInterval node:timers:209:21
+      1  100.0%          LazyCompile: ~setupConnectionsTracking node:_http_server:409:34
+      1  100.0%            LazyCompile: ~Server node:_http_server:418:16
+      1   11.1%      LazyCompile: ~import node:internal/modules/esm/loader:396:15
+      1  100.0%        LazyCompile: ~<anonymous> node:internal/modules/run_main:51:29
+      1  100.0%          LazyCompile: ~loadESM node:internal/process/esm_loader:82:41
+      1  100.0%            /home/retazzz/.nvm/versions/node/v18.0.0/bin/node
+      1   11.1%      LazyCompile: ~addChunk /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_readable.js:295:18
+      1  100.0%        LazyCompile: ~readableAddChunk /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_readable.js:249:26
+      1  100.0%          LazyCompile: ~Readable.push /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_readable.js:222:36
+      1  100.0%            Function: ^Transform.push /home/retazzz/Desktop/programacion/nodejs/coderhouse-exercises/entregable14/node_modules/readable-stream/lib/_stream_transform.js:137:37
+      1   11.1%      LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:495:28
+      1  100.0%        LazyCompile: ~Module._resolveFilename node:internal/modules/cjs/loader:853:35
+      1  100.0%          LazyCompile: ~Module._load node:internal/modules/cjs/loader:759:24
+      1  100.0%            LazyCompile: ~Module.require node:internal/modules/cjs/loader:997:36
+
