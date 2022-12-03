@@ -1,3 +1,5 @@
 node_modules/
 mensajes.json
 .env
+carts.json
+products.json
