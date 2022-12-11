@@ -4,6 +4,7 @@ class ProductController {
   constructor () {
     this.service = this.#getPersistenceService()
   }
+
   #getPersistenceService = () => {
     PersistenceFactory.getPersistence().then((data) => {
       this.service = data.ProductService
@@ -70,6 +71,5 @@ class ProductController {
     }
   }
 }
-
 
 export default new ProductController()

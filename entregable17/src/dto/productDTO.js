@@ -14,7 +14,7 @@ const productSimplified = (products) => {
     return productsDTO
   }
   return {
-    id: product?.id ? product.id : product._id,
+    id: products?.id ? products.id : products._id,
     name: products.name,
     price: products.price,
     thumbnail: products.thumbnail,

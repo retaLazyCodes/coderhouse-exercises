@@ -4,6 +4,7 @@ class CartController {
   constructor () {
     this.service = this.#getPersistenceService()
   }
+
   #getPersistenceService = () => {
     PersistenceFactory.getPersistence().then((data) => {
       this.service = data.CartService
